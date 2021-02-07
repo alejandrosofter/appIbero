@@ -8,7 +8,8 @@ WORKDIR /opt/src
 ENV APP_SOURCE_FOLDER /opt/src
 ENV APP_BUNDLE_FOLDER /opt/bundle
 ENV DEBIAN_FRONTEND=noninteractive
-RUN mkdir -p ${APP_SOURCE_FOLDER}  && chmod 777 . 
+RUN mkdir -p ${APP_SOURCE_FOLDER}  && chmod 777 .
+RUN mkdir -p ${APP_BUNDLE_FOLDER}  && chmod 777 . 
 COPY ./src . 
 RUN ls && apt-get update && \
 	apt-get install --assume-yes apt-transport-https ca-certificates && \
@@ -19,7 +20,7 @@ RUN curl https://install.meteor.com/?release=$METEOR_VERSION --output /tmp/insta
 	sed --in-place "s/tar -xzf.*/bsdtar -xf \"\$TARBALL_FILE\" -C \"\$INSTALL_TMPDIR\"/g" /tmp/install-meteor.sh && \
 	# Install Meteor
 	printf "\n[-] Installing Meteor $METEOR_VERSION...\n\n" && \
-	sh /tmp/install-meteor.sh
+	sh /tmp/install-meteor.sh && meteor npm install --save @babel/runtime
 
 # Fix permissions warning; https://github.com/meteor/meteor/issues/7959
 ENV METEOR_ALLOW_SUPERUSER true

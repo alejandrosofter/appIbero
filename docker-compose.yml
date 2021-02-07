@@ -8,5 +8,6 @@ services:
       - 3000:3000
     volumes: 
       - "./src/:/opt/src/"
+      - "./bin/:/opt/bundle/"
     expose: 
       - "3000"
