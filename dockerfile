@@ -11,6 +11,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN mkdir -p ${APP_SOURCE_FOLDER}  && chmod 777 .
 RUN mkdir -p ${APP_BUNDLE_FOLDER}  && chmod 777 . 
 COPY ./src . 
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod 777 /usr/local/bin/entrypoint.sh
 RUN ls && apt-get update && \
 	apt-get install --assume-yes apt-transport-https ca-certificates && \
 	apt-get install --assume-yes --no-install-recommends build-essential bzip2 curl git libarchive-tools python
@@ -20,11 +22,11 @@ RUN curl https://install.meteor.com/?release=$METEOR_VERSION --output /tmp/insta
 	sed --in-place "s/tar -xzf.*/bsdtar -xf \"\$TARBALL_FILE\" -C \"\$INSTALL_TMPDIR\"/g" /tmp/install-meteor.sh && \
 	# Install Meteor
 	printf "\n[-] Installing Meteor $METEOR_VERSION...\n\n" && \
-	sh /tmp/install-meteor.sh && meteor npm install --save @babel/runtime
-
+	sh /tmp/install-meteor.sh
+# RUN  meteor npm install --save @babel/runtime
 # Fix permissions warning; https://github.com/meteor/meteor/issues/7959
 ENV METEOR_ALLOW_SUPERUSER true
-ENTRYPOINT [ "meteor" ]
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
 
 # RUN cd pru
 # RUN meteor
