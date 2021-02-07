@@ -1,0 +1,122 @@
+<template name="personalLiquidaciones">
+  <div id="panelDatos" class="col-md-9">
+       <h1><i class="fas fa-user-clock"></i> LIQUIDACIONES <small> de horas del Personal</small></h1>
+        {{> reactiveTable settings=settings}}
+  </div>
+</template>
+<template name="horasLiquidacion">
+  <div  class="col-md-11">
+       <h1><i class="fas fa-user-clock"></i> HORAS {{tipoPersonal}} <small> desde <b>{{desde}}</b> hasta <b>{{hasta}}</b></small></h1>
+  <div  class="col-md-3">
+{{> reactiveTable id="personal" settings=settingsPersonal}}
+  </div>
+    <div  class="col-md-7">
+   
+        {{#autoForm  collection="PersonalLiquidaciones" id="nuevaHoraPersonal_" doc=datos scope="horas" type="update-pushArray"}}
+<div class="row">
+        <div class='col-md-2'> {{> afQuickField id="dia" name='dia' }}</div>
+        <div class='col-md-3'>{{> afQuickField name='tipoHora' }}</div>
+        <div class='col-md-2'>{{> afQuickField name='cantidad' }}</div>
+        <div class='col-md-2'>{{> afQuickField name='viandas' }}</div>
+        <div class='col-md-2'>{{> afQuickField name='idPersonal' value=idPersonalSeleccion }}</div>
+          <div class='col-md-2' style=" margin-top: 22px;">  <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-success"><span class="fas fa-plus" aria-hidden="true"></span> </button></div>
+        
+  </div>
+
+    {{/autoForm}}
+     
+{{> reactiveTable id="horas" settings=settings}}
+  </div>
+  </div>
+</template>
+
+<template name="accionesPersonalHora">
+  <div class="acciones">
+  
+      <button title="Horas" type="button" id="horas"  class=" btn  btn-xs btn-primary" aria-label="Left Align">  <span class="fas fa-clock" aria-hidden="true"></span> </button>
+  
+  <button title="Imprimir" type="button" id="imprimir"  class=" btn  btn-xs btn-success" aria-label="Left Align">  <span class="fas fa-print" aria-hidden="true"></span> </button>
+  
+       
+  </div>
+</template>
+<template name="accionesHoras">
+  <div class="acciones">
+  
+       <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">  <span class="fas fa-pencil-alt" aria-hidden="true"></span> </button>
+
+    <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <span class="fas fa-trash" aria-hidden="true"></span> </button>
+  </div>
+</template>
+<template name="accionesPersonalLiquidaciones">
+  <div class="acciones">
+  	<button title="Imprimir" type="button" id="imprimir"  class=" btn  btn-xs btn-success" aria-label="Left Align">  <span class="fas fa-print" aria-hidden="true"></span> </button>
+
+      <button title="Horas" type="button" id="horas"  class=" btn  btn-xs btn-primary" aria-label="Left Align">  <span class="fas fa-clock" aria-hidden="true"></span> </button>
+  
+        <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">  <span class="fas fa-pencil-alt" aria-hidden="true"></span> </button>
+
+    <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <span class="fas fa-trash" aria-hidden="true"></span> </button>
+  </div>
+</template>
+
+
+<template name='nuevaLiquidacionPersonal'>
+   <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><span class="fas fa-plus" aria-hidden="true"></span> LIQUIDACION <small> de horas</small></h1>
+            {{#autoForm  collection="PersonalLiquidaciones" id="nuevoPersonalLiquidacion_" type="insert"}}
+            
+        <div class="row">
+	        <div class='col-md-4'> {{> afQuickField name='fechaDesde' }} </div>
+	        <div class='col-md-4'> {{> afQuickField name='fechaHasta' }} </div>
+        </div>
+        <div class="row">
+	        <div class='col-md-5'> {{> afQuickField name='tipoPersonal' }}</div>
+	        <div class='col-md-3'> {{> afQuickField name='estado' }}</div>
+        
+        </div>
+    
+    
+        
+  
+            <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="fas fa-plus" aria-hidden="true"></span> AGREGAR</button>
+           {{/autoForm}}
+        </div>
+</div>
+</div>
+</div>
+</template>
+
+<template name='modificarLiquidacionPersonal'>
+   <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><span class="gfas fa-pencil-alt" aria-hidden="true"></span> LIQUIDACION <small> de horas</small></h1>
+            {{#autoForm  collection="PersonalLiquidaciones" id="modificarPersonalLiquidacion_" type="update" doc=this}}
+            <!-- 5369 -->
+        <div class="row">
+	        <div class='col-md-4'> {{> afQuickField name='fechaDesde' }} </div>
+	        <div class='col-md-4'> {{> afQuickField name='fechaHasta' }} </div>
+        </div>
+        <div class="row">
+	        <div class='col-md-5'> {{> afQuickField name='tipoPersonal' }}</div>
+	        <div class='col-md-3'> {{> afQuickField name='estado' }}</div>
+        
+        </div>
+    
+    
+        
+  
+            <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="fas fa-pencil-alt" aria-hidden="true"></span> MODIFICAR</button>
+           {{/autoForm}}
+        </div>
+</div>
+</div>
+</div>
+</template>

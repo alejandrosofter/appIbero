@@ -1,0 +1,55 @@
+<template name="formAnclaje">
+<div class='row'>
+  <div class='col-md-3'>
+     <fieldset>
+      {{> afQuickField name='zona'}}
+       {{> afQuickField name='pozo' style="width:120px"}}
+       {{> afQuickField name='bateria' style="width:120px"}}
+       {{> afQuickField name='certificacion' style="width:90px"}}
+       {{> afQuickField name='fechaConstruccion' style="width:180px"}}
+       {{> afQuickField name='fechaEnsayo' style="width:180px"}}
+        {{> afQuickField name='hora' style="width:120px"}}
+        
+    </fieldset>
+   
+  </div>
+     <div class='col-md-5'>
+       <h3>ANCLAJE CONSTRUCCION <small>estado posicional</small></h3>
+       <table>
+        <tr>
+          <td style="padding-left:15px">{{> afQuickField id='estadoNO' name='estadoNO'}} </td>
+           <td style="padding-left:15px">{{> afQuickField id='estadoNE' name='estadoNE'}} </td>
+            <td style="padding-left:15px">{{> afQuickField id='estadoSO' name='estadoSO'}} </td>
+            <td style="padding-left:15px">{{> afQuickField id='estadoSE' name='estadoSE'}} </td>
+        </tr>
+         
+       </table>
+         {{> afQuickField id="valorAnclaje" name='valorAnclaje' style="width:100px"}}
+        <h3>ANCLAJE ENSAYADO <small>estado posicional</small></h3>
+       <table>
+        <tr>
+          <td style="padding-left:15px">{{> afQuickField  id='a_estadoNO'  name='a_estadoNO'}} </td>
+           <td style="padding-left:15px">{{> afQuickField id='a_estadoNE'  name='a_estadoNE'}} </td>
+            <td style="padding-left:15px">{{> afQuickField id='a_estadoSO' name='a_estadoSO'}} </td>
+            <td style="padding-left:15px">{{> afQuickField id='a_estadoSE' name='a_estadoSE'}} </td>
+        </tr>
+         <tr>
+          <td style="padding-left:15px">{{> afQuickField id='a_estadoNO_estado' name='estadoNO_estado'}} </td>
+           <td style="padding-left:15px">{{> afQuickField id='a_estadoNE_estado' name='estadoNE_estado'}} </td>
+            <td style="padding-left:15px">{{> afQuickField id='a_estadoSO_estado' name='estadoSO_estado'}} </td>
+            <td style="padding-left:15px">{{> afQuickField id='a_estadoSE_estado' name='estadoSE_estado'}} </td>
+        </tr>
+       </table>
+         {{> afQuickField id='valorEnsayo' name='valorEnsayo' style="width:100px"}}
+       {{> afQuickField id='indiceAjuste'  name='indiceAjuste' style="width:60px"}}
+       {{> afQuickField name='equipoIngresante' style="width:120px"}}
+       {{> afQuickField name='nroReporte' style="width:120px"}}
+        
+       
+    </div>
+    <div class='col-md-7'>
+    {{> afQuickField name='observaciones' type="textarea"}}
+    </div>
+    
+  </div>
+</template>

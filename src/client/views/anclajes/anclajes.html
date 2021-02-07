@@ -1,0 +1,109 @@
+<template name="anclajes">
+  <div id="panelDatos" class="col-md-10">
+       <h1><i class="fas fa-anchor"></i> ANCLAJES <small>montajes</small></h1>
+       
+          {{> filtro_equipoEnsayo}}
+
+       <br><br>
+        {{> tabular id="tablaAnclajes" selector=selector table=TabularTables.Anclajes class="table table-condensed"}}
+  </div>
+  <div class="col-md-3" style="padding-top:130px;display:none" id="panelLateral">
+    
+  </div>
+
+
+</template>
+<template name="anclajesEquipos">
+  <div id="panelDatos" class="col-md-9">
+       <h1><i class="fas fa-user-friends"></i> EQUIPOS <small>de anclajes</small></h1>
+        {{> reactiveTable settings=settings}}
+  </div>
+
+
+
+</template>
+<template name="filtro_equipoEnsayo">
+  <div style="float:right">
+  {{#autoForm  collection="Anclajes" type="insert" id="buscaAnclajes" }}
+  {{#if verEquipoSelector}}
+    {{> afQuickField id="idEquipoEnsayo" name='equipoEnsayo' }}
+  {{/if}}
+{{/autoForm}}
+
+</div>
+</template>
+<template name="accionesAnclajes">
+  <div class="acciones">
+      <button title="Observaciones" type="button" id="observaciones"  class=" btn  btn-xs btn-primary" aria-label="Left Align"> <span class="label label-danger">{{cantidadObservaciones}}</span>  <i class="fas fa-comments"></i> </button>
+  
+  {{#if tieneCertificado}}
+    <button title="Descargar Certificado" type="button" id="descargar" class=" btn  btn-xs btn-success" aria-label="Left Align">  <i class="fas fa-download"></i> </button>
+    {{/if}}
+        <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">  <i class="fas fa-pencil-alt"></i> </button>
+
+    <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <i class="fas fa-trash"></i> </button>
+  </div>
+</template>
+<template name="accionesAnclajesEquipos">
+  <div class="acciones">
+      <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <i class="fas fa-trash"></i>  </button>
+      <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">   <i class="fas fa-pencil-alt"></i> </button>
+  
+  </div>
+</template>
+<template name="detalleAnclaje">
+    <h4><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> ARCHIVO</h4>
+ 
+   {{#if detalle.archivo}}<button type="submit"  style="width:100%" class="btn btn-primary"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> VER</button>{{/if}}
+  {{> archivosForm}}
+<h4><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> INFO</h4>
+   <table class="table table-condensed">
+      <tr> <td style="width:80px"><big><b>$ ENSAYO</b></big></td><td style="padding-left:10px"> $ {{detalle.valorEnsayo}}</td> </tr>
+     <tr> <td ><big><b>$ CONST.</b></big></td><td style="padding-left:10px"> $ {{detalle.valorAnclaje}}</td></tr>
+      <tr> <td ><big><b>INDICE</b></big></td><td  style="padding-left:10px">{{detalle.indiceAjuste}}</td></tr>
+      <tr> <td ><big><b>ENSAYO</b></big></td><td  style="padding-left:10px">
+        {{#if detalle.a_estadoNO}} <b style="color:green">NO</b>{{else}} NO  {{/if}} - 
+        {{#if detalle.a_estadoNE}} <b style="color:green">NE</b>{{else}} NE  {{/if}} - 
+        {{#if detalle.a_estadoSO}} <b style="color:green">SO</b>{{else}} SO  {{/if}} - 
+        {{#if detalle.a_estadoSE}} <b style="color:green">SE</b>{{else}} SE  {{/if}}
+        </td></tr>
+     <tr> <td ><big><b>CONST.</b></big></td><td  style="padding-left:10px">
+        {{#if detalle.estadoNO}} <b style="color:green">NO</b>{{else}} NO  {{/if}} - 
+        {{#if detalle.estadoNE}} <b style="color:green">NE</b>{{else}} NE  {{/if}} - 
+        {{#if detalle.estadoSO}} <b style="color:green">SO</b>{{else}} SO  {{/if}} - 
+        {{#if detalle.estadoSE}} <b style="color:green">SE</b>{{else}} SE  {{/if}}
+        </td></tr>
+    </table>
+  <h4><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> COMENTARIO/S</h4>
+  {{>comentariosAnclaje comentarios= detalle.observacionesHistorial}}
+ </template>
+<template name="anclajeObservaciones">
+<div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><i class="fas fa-comments"></i> OBSERVACIONES <small> del anclaje</small></h1>
+   {{#autoForm  collection="Anclajes" id="nuevaObservacionAnclaje_" doc=datos scope="observaciones" type="update-pushArray"}}
+<div class="row">
+        <div class='col-md-9'> {{> afQuickField name='detalle' }}</div>
+        {{> afQuickField name='fecha' value=fechaActual }}
+        {{> afQuickField name='usuario' value=usuario }}
+          <div class='col-md-1' style=" margin-top: 22px;">  <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-success"><i class="far fa-plus-square"></i> </button></div>
+        
+  </div>
+
+    {{/autoForm}}
+  {{> reactiveTable settings=settings}}
+ 
+        </div>
+</div>
+</div>
+</div>
+</template>
+<template name="comentario">
+<p><small><small style="color:blue">{{fechaRip}}</small> {{historial.detalle}}</small> </p>
+</template>
+<template name="archivosForm">
+    {{> upload_bootstrap callbacks=myCallbacks }}
+</template>

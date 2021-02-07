@@ -1,0 +1,168 @@
+<template name="personal">
+  <div id="panelDatos" class="col-md-9">
+       <h1><i class="fas fa-user-clock"></i> PERSONAL <small>operativo</small></h1>
+        {{> reactiveTable settings=settings}}
+  </div>
+</template>
+
+
+<template name="accionesPersonal">
+  <div class="acciones">
+      <button title="Accidentes" type="button" id="accidentes"  class=" btn  btn-xs btn-primary" aria-label="Left Align"> <span class="label label-danger">{{cantidadAccidentes}}</span> <i class="fas fa-car-crash"></i> </button>
+  
+      <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">   <i class="fas fa-pencil-alt"></i> </button>
+
+         <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <i class="fas fa-trash"></i>  </button>
+  </div>
+</template>
+
+<template name='nuevoPersonal'>
+   <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><span class="fas fa-plus" aria-hidden="true"></span> PERSONAL <small> operativo</small></h1>
+            {{#autoForm  collection="Personal" id="nuevoPersonal_" type="insert"}}
+             <div class="row">
+        <div class='col-md-4'> {{> afQuickField style="text-transform: uppercase;" name='apellido' }}</div>
+        <div class='col-md-3'> {{> afQuickField style="text-transform:capitalize;" name='nombre' }}</div>
+          <div class='col-md-3'> {{> afQuickField name='nroLegajo' }}</div>
+        
+        </div>
+        <div class="row">
+        <div class='col-md-4'> {{> afQuickField name='cuil' }}</div>
+        <div class='col-md-4'> {{> afQuickField name='tipoPersonal' }}</div>
+          <div class='col-md-3'> {{> afQuickField name='obraSocial' }}</div>
+        
+        </div>
+        <div class="row">
+        <div class='col-md-3'> {{> afQuickField name='sueldo' }}</div>
+        <div class='col-md-2'> {{> afQuickField name='centroCosto' }}</div>
+          <div class='col-md-4'> {{> afQuickField name='categoria' }}</div>
+        
+        </div>
+    
+    <div class="row">
+        <div class='col-md-4'> {{> afQuickField name='estado' }}</div>
+          <div class='col-md-4'> {{> afQuickField name='fechaExamen' }}</div>
+        
+        </div>
+    
+        
+  
+            <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="fas fa-plus" aria-hidden="true"></span> AGREGAR</button>
+           {{/autoForm}}
+        </div>
+</div>
+</div>
+</div>
+</template>
+
+<template name='modificarPersonal'>
+   <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><i class="fas fa-pencil-alt"></i>  PERSONAL <small> operativo</small></h1>
+            {{#autoForm  collection="Personal" id="modificarPersonal_" doc=this type="update"}}
+             <div class="row">
+        <div class='col-md-4'> {{> afQuickField style="text-transform: uppercase;" name='apellido' }}</div>
+        <div class='col-md-3'> {{> afQuickField style="text-transform:capitalize;" name='nombre' }}</div>
+          <div class='col-md-3'> {{> afQuickField name='nroLegajo' }}</div>
+        
+        </div>
+        <div class="row">
+        <div class='col-md-4'> {{> afQuickField name='cuil' }}</div>
+        <div class='col-md-4'> {{> afQuickField name='tipoPersonal' }}</div>
+          <div class='col-md-3'> {{> afQuickField name='obraSocial' }}</div>
+        
+        </div>
+        <div class="row">
+        <div class='col-md-3'> {{> afQuickField name='sueldo' }}</div>
+        <div class='col-md-2'> {{> afQuickField name='centroCosto' }}</div>
+          <div class='col-md-4'> {{> afQuickField name='categoria' }}</div>
+        
+        </div>
+    
+    <div class="row">
+        <div class='col-md-4'> {{> afQuickField name='estado' }}</div>
+          <div class='col-md-4'> {{> afQuickField name='fechaExamen' }}</div>
+        
+        </div>
+    
+        
+  
+            <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="fas fa-pencil-alt" aria-hidden="true"></span> ACEPTAR</button>
+           {{/autoForm}}
+        </div>
+</div>
+</div>
+</div>
+</template>
+
+<template name="accionesPersonalAccidentes">
+  <div class="acciones">
+     <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">  <span class="fas fa-pencil-alt" aria-hidden="true"></span> </button>
+      <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <span class="fas fa-trash" aria-hidden="true"></span> </button>
+     
+  
+  </div>
+</template>
+
+<template name="personalAccidentes">
+<div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><i class="fas fa-car-crash"></i>  ACCIDENTES <small> del personal</small></h1>
+   {{#autoForm  collection="Personal" id="nuevoAccidentePersonal_" doc=datos scope="accidentes" type="update-pushArray"}}
+<div class="row">
+        <div class='col-md-2'> {{> afQuickField id="fechaAccidente" name='fechaAccidente' }}</div>
+        <div class='col-md-2'>{{> afQuickField name='fechaDenuncua' }}</div>
+        <div class='col-md-2'>{{> afQuickField name='fechaAlta' }}</div>
+        <div class='col-md-4'>{{> afQuickField name='comentario' }}</div>
+          <div class='col-md-1' style=" margin-top: 22px;">  <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-success"><span class="fas fa-plus" aria-hidden="true"></span> </button></div>
+        
+  </div>
+
+    {{/autoForm}}
+    
+  {{> reactiveTable id="tablaAccidentes" settings=settings}}
+ 
+        </div>
+</div>
+</div>
+</div>
+</template>
+
+<template name="modificarAccidente">
+<div class="modal fade bs-example-modal-lg" id="modificarAccidenteModal" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><i class="fas fa-pencil"></i>  MODIFICAR <small> Accidente</small></h1>
+ 
+    {{#autoForm  collection="Personal"  id="modificarAccidentePersonal_" doc=docuUpdate scope="accidentes" setArrayItems=true  type="update"}}
+<div class="row">
+        <div class='col-md-4'> {{> afQuickField name=eti_fechaAccidente }}</div>
+        <div class='col-md-4'>{{> afQuickField name=eti_fechaDenuncia }}</div>
+        </div>
+      <div class="row">
+        <div class='col-md-4'>{{> afQuickField name=eti_fechaAlta }}</div>
+        <div class='col-md-6'>{{> afQuickField name=eti_comentarios }}</div>
+      </div>
+         <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-warning"><span class="fas fa-pencil" aria-hidden="true"></span> MODIFICAR </button>
+        
+
+
+    {{/autoForm}}
+ 
+        </div>
+</div>
+</div>
+</div>
+</template>

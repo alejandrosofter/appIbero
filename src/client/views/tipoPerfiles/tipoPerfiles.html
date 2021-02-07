@@ -1,0 +1,71 @@
+<template name="tipoPerfiles">
+  <div id="panelDatos" class="col-md-9">
+    <button style="float:right;" id="btnAgregar" class="btn btn-success"><i class="fas fa-plus"></i> NUEVO</button>
+       <h1><i class="fas fa-users-cog"></i> TIPO PERFILES <small>de usuarios</small></h1>
+        {{> reactiveTable settings=settings}}
+  </div>
+</template>
+
+
+<template name="accionesTipoPerfiles">
+  <div class="acciones">
+    
+      <button title="Modificar" type="button" class="update btn  btn-xs btn-primary" aria-label="Left Align">   <i class="fas fa-pencil-alt"></i> </button>
+
+         <button title="Quitar" type="button" class="delete btn  btn-xs btn-danger" aria-label="Left Align">  <i class="fas fa-trash"></i>  </button>
+  </div>
+</template>
+
+<template name='nuevoTipoPerfiles'>
+   <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><span class="fas fa-plus" aria-hidden="true"></span> TIPO PERFIL <small> usuarios</small></h1>
+            {{#autoForm  collection="TipoPerfiles" id="nuevoTipoPerfil_" type="insert"}}
+             <div class="row">
+        <div class='col-md-4'> {{> afQuickField style="text-transform: uppercase;" name='nombrePerfil' }}</div>
+           <div class='col-md-4'> {{> afQuickField  name='esAdministrador' }}</div>
+        
+        </div>
+
+       <div style="width: 100%"> {{> afQuickField name='modulosAcceso' }}</div>
+ 
+        
+  
+            <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="fas fa-plus" aria-hidden="true"></span> AGREGAR</button>
+           {{/autoForm}}
+        </div>
+</div>
+</div>
+</div>
+</template>
+
+<template name='modificarTipoPerfiles'>
+   <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+          <h1><i class="fas fa-pencil-alt"></i>  PERSONAL <small> operativo</small></h1>
+            {{#autoForm  collection="TipoPerfiles" id="modificarPersonal_" doc=this type="update"}}
+              <div class="row">
+        <div class='col-md-4'> {{> afQuickField style="text-transform: uppercase;" name='nombrePerfil' }}</div>
+        <div class='col-md-4'> {{> afQuickField  name='esAdministrador' }}</div>
+          
+        
+        </div>
+       <div style="width: 100%"> {{> afQuickField name='modulosAcceso' }}</div>
+ 
+        
+    
+        
+  
+            <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="fas fa-pencil-alt" aria-hidden="true"></span> ACEPTAR</button>
+           {{/autoForm}}
+        </div>
+</div>
+</div>
+</div>
+</template>

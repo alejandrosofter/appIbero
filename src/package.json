@@ -1,0 +1,21 @@
+{
+  "name": "appIbero",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.6",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "datatables.net-bs": "^1.10.20",
+    "fibers": "^5.0.0",
+    "future": "^2.3.1",
+    "meteor-node-stubs": "^1.0.0",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.6.1",
+    "python-shell": "^2.0.3",
+    "random": "^2.1.1",
+    "simpl-schema": "^1.5.7"
+  }
+}

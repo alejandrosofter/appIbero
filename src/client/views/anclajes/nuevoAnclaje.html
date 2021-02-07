@@ -1,0 +1,95 @@
+<template name='nuevoAnclaje'>
+	 <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+					<h1><i class="fas fa-plus-square"></i> ANCLAJE <small> en locación</small></h1>
+					  {{#autoForm  collection="Anclajes" id="nuevoAnclaje_" type="insert"}}
+					  
+    
+    <div class="row">
+	      <div class='col-md-4'> {{> afQuickField name='pozo' }}</div>
+	      <div class='col-md-3'> {{> afQuickField name='bateria' }}</div>
+	        <div class='col-md-3'> {{> afQuickField name='certificacion' }}</div>
+	      
+  </div>
+
+   <div class="row">
+	     <div class='col-md-6'>  {{> afQuickField name='equipoEnsayo'}}</div>
+	      <div class='col-md-4'> {{> afQuickField name='equipoIngresante' }}</div>
+	      
+  </div>
+  <div class="row">
+	     <div class='col-md-4'>  {{> afQuickField name='fechaEnsayo'}}</div>
+	      <div class='col-md-4'> {{> afQuickField name='fechaConstruccion' }}</div>
+	      <div class='col-md-3'> {{> afQuickField name='horaEnsayo' }}</div>
+  </div>
+    <!-- <div class="row">
+	     <div class='col-md-3'>  {{> afQuickField name='cantidadAnclajes'}}</div>
+	      <div class='col-md-4'> {{> afQuickField name='tipoAnclajesConstruidos' }}</div>
+	    
+  </div> -->
+  <div class="row">
+	     <div class='col-md-2'>  {{> afQuickField name='estadoNO'}}</div>
+	      <div class='col-md-2'> {{> afQuickField name='estadoNE' }}</div>
+	      <div class='col-md-2'> {{> afQuickField name='estadoSO' }}</div>
+	      <div class='col-md-2'> {{> afQuickField name='estadoSE' }}</div>
+
+  </div>
+   {{> afQuickField name="certificado"}}
+    {{> afQuickField name="usuario" type="hidden" value=usuario}} 
+  
+					  <button id="btnAceptar" type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><i class="far fa-plus-square"></i> AGREGAR</button>
+					 {{/autoForm}}
+				</div>
+</div>
+</div>
+</div>
+</template>
+
+<template name='nuevoEquipoAnclaje'>
+	 <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+					<h1><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> EQUIPO <small> para anclaje</small></h1>
+					  {{#autoForm  collection="AnclajesEquipos" id="nuevoAnclajeEquipo_" type="insert"}}
+					  
+    
+   
+{{> afQuickField name='nombreEquipo' }}
+{{> afQuickField name='detalle' }}
+{{> afQuickField name='idUsuario' }}
+        
+  
+					  <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> AGREGAR</button>
+					 {{/autoForm}}
+				</div>
+</div>
+</div>
+</div>
+</template>
+<template name='modificarEquipoAnclaje'>
+	 <div class="modal fade bs-example-modal-lg" tabindex="" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+ 
+                <div class="modal-body">
+					<h1><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> EQUIPO <small> para anclaje</small></h1>
+					  {{#autoForm  collection="AnclajesEquipos" doc=this id="modificarAnclajeEquipo_" type="update"}}
+					  
+    
+   
+{{> afQuickField name='nombreEquipo' }}
+{{> afQuickField name='detalle' }}
+        {{> afQuickField name='idUsuario' }}
+  
+					  <button type="submit" disabled="{{disableButtons}}" style="width:100%" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> MODIFICAR</button>
+					 {{/autoForm}}
+				</div>
+</div>
+</div>
+</div>
+</template>

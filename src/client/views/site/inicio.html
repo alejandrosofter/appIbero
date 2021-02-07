@@ -1,0 +1,22 @@
+ <template name="inicio">
+   <div class="jumbotron col-md-7">
+  <h1><b>{{empresa}}</b> <small>INTRANET </small> </h1>
+  <p>Hola {{usuario.username}}, ud tiene un perfil de <b>{{usuario.profile}}</b>. </p>
+    {{#if esAdmin}}
+    <p>
+      Desde este sistema podes tener control sobre <b>FLOTA VEHICULAR</b>, 
+    llevar un control de <b>CENTRO DE COSTOS</b>, Extraer informacion de su <b>FLOTA VEHICULAR</b>hacia este sistema para hacer tareas de <b>MANTENIMIENTO</b>.
+     </p>
+    {{else}}
+    Ud. tiene un usuario <b>LIMITADO</b> 
+    {{/if}}
+    
+     <p>
+       
+         
+     </p>
+</div>
+  <div style="float:right" class="col-md-4">
+   
+   </div>
+  </template>
